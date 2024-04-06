@@ -1653,7 +1653,7 @@ setInterval(function () {
         <li><a href="contact.html">Contact us</a></li>
         <li><a href="about.html">About us</a></li>
     </ul>
-    <a href="javascript:void(0)" class="ham fixed_flex" onclick="perform('menu','slide_in')"><iconify-icon icon="ci:hamburger-lg"></iconify-icon></a>
+    <a href="javascript:void(0)" class="ham fixed_flex" onclick="perform('menu','slide_in')">-</a>
 </section>
 </nav>
 
