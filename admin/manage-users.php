@@ -40,6 +40,7 @@ echo "<script>alert('Data deleted');</script>";
                             <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">Manage users</li>
                         </ol>
+                        <a href="add-user.php">Add Student</a>
             
                         <div class="card mb-4">
                             <div class="card-header">

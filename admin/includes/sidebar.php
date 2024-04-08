@@ -9,6 +9,10 @@
                             </a>
                             
                  
+                            <a class="nav-link" href="add-user.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                New Users
+                            </a>
                             <a class="nav-link" href="manage-users.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Manage Users
