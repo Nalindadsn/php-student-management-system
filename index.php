@@ -381,26 +381,28 @@ footer p {
   </style>
 <body>
  <header>
-    <h2><a href="#">Life is a party!</a></h2>
+    <h2><a href="#">GREEN UNIVERSITY
+</a></h2>
     <nav>
-      <li><a href="#">Tours</a></li>
+      <li><a href="index.php">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
+      <li><a href="#">Signin</a></li>
     </nav>
   </header>
 
   <section class="hero">
     <div class="background-image"></div>
     <div class="hero-content-area">
-      <h1>Life is a party!</h1>
+      <h1>GREEN UNIVERSITY</h1>
       <h3>Unmissable Adventure Tours With Your Friends</h3>
       <a href="#" class="btn">Contact Us Now</a>
     </div>
   </section>
 
   <section class="destinations">
-    <h3 class="title">Some of our destinations:</h3>
-    <p>Tired of the beach alone? Are the plains too plain? Come along with us on one of our unusual adventures with yout friends. Here are some pictures from people who have had elevated experiences with us.</p>
+    <h3 class="title">WHO WE ARE?</h3>
+    <p>Welcome to the Green University, under the partnership with the  Professionals and Certification Institute. Green University is a registered professional in the Sri Lanka.</p>
     <hr>
 
     <ul class="grid">
@@ -412,30 +414,44 @@ footer p {
   </section>
 
   <section class="packages">
-    <h3 class="title">Tour Packages</h3>
-    <p>We offer a variety of group (minimum 5 people) packages. Whether you've spent some summers together or this might be your first adventure, we've got the perfect vacation for you.</p>
-    <hr>
+    <h3 class="title">OUR SERVICES
+</h3>
+   
 
     <ul class="grid">
       <li>
-        <i class="fa fa-compass fa-4x"></i>
-        <h4>Guided Trips</h4>
-        <p>Looking for the complete experience? Take a tour with one of our experts. They'll show you secrets that you're likely to miss otherwise.</p>
+        <i class="fa fa-book fa-4x"></i>
+        <h4>
+Multidisciplinary study
+facilities</h4>
+        <p>
+We provide the best and modern facilities
+for studies.</p>
       </li>
       <li>
         <i class="fa fa-camera-retro fa-4x"></i>
-        <h4>Photo Trips</h4>
-        <p>Want to experience nature's beauty without all of that annoying exercise? Take a photo tour on one of our <em>Life is a party!</em> buses.</p>
+        <h4>
+International programs</h4>
+        <p>
+We provide International recognized
+Programs.</p>
       </li>
       <li>
         <i class="fa fa-bicycle fa-4x"></i>
-        <h4>Biking Trips</h4>
-        <p>If bicycles are more your speed, consider taking a tour through one of our mountain or city bike paths. We'll provide the bikes, and lunch too!</p>
+        <h4>
+Highly qualified
+lecturing staff</h4>
+        <p>
+We have the most talented Lecturers
+more than 25</p>
       </li>
       <li>
         <i class="fa fa-flag-checkered fa-4x"></i>
-        <h4>Racing Trips</h4>
-        <p>Got a competitive spirit? Sign up for one of our challenge-based marathons! Try to reach the summit before any other group.</p>
+        <h4>
+Using Reflection to
+Support to learning</h4>
+        <p>
+Our latest podcast on evidence-based L&D explores the power of reflection for effective workplace learning.</p>
       </li>
     </ul>
   </section>
@@ -453,7 +469,7 @@ footer p {
 
   <section class="contact">
     <h3 class="title">Learn more</h3>
-    <p>Want to know about our upcoming events, or come to one of our mixers? Just sign up for our mailing list. No spam from us, we promise! Except for the spam we give you to keep up your energy while you're having fun with your friends. Have a blast! We have tons of that.</p>
+    <p>Welcome to the Green University, under the partnership with the Professionals and Certification Institute. Green University is a registered professional in the Sri Lanka.</p>
     <hr>
     <form>
       <input type="email" placeholder="Email">
