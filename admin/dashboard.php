@@ -1,157 +1,111 @@
-<?php
-session_start();
-//error_reporting(0);
-include('includes/dbconnection.php');
-if (strlen($_SESSION['sturecmsaid']==0)) {
+<?php session_start();
+include_once('../includes/config.php');
+if (strlen($_SESSION['adminid']==0)) {
   header('location:logout.php');
   } else{
-   
-  ?>
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-   
-    <title>Student  Management System|||Dashboard</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="vendors/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="vendors/chartist/chartist.min.css">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- End layout styles -->
-   
-  </head>
-  <body>
-    <div class="container-scroller">
-      <!-- partial:partials/_navbar.html -->
-     <?php include_once('includes/header.php');?>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
-        <?php include_once('includes/sidebar.php');?>
-        <!-- partial -->
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="row">
-              <div class="col-md-12 grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="d-sm-flex align-items-baseline report-summary-header">
-                          <h5 class="font-weight-semibold">Report Summary</h5> <span class="ml-auto">Updated Report</span> <button class="btn btn-icons border-0 p-2"><i class="icon-refresh"></i></button>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Admin Dashboard | Registration and Login System </title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+   <?php include_once('includes/navbar.php');?>
+        <div id="layoutSidenav">
+          <?php include_once('includes/sidebar.php');?>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Dashboard</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                        <div class="row">
+<?php
+$query=mysqli_query($con,"select id from users");
+$totalusers=mysqli_num_rows($query);
+?>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Total Registered Users 
+                                        <span style="font-size:22px;"> <?php echo $totalusers;?></span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="manage-users.php">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+<?php
+$query1=mysqli_query($con,"select id from users where date(posting_date)=CURRENT_DATE()-1");
+$yesterdayregusers=mysqli_num_rows($query1);
+?>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Yesterday Registered Users 
+                                        <span style="font-size:22px;"> <?php echo $yesterdayregusers;?></span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="yesterday-reg-users.php">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+
+<?php
+$query2=mysqli_query($con,"select id from users where date(posting_date)>=now() - INTERVAL 7 day");
+$last7daysregusers=mysqli_num_rows($query2);
+?>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body"> Registered Users in Last 7 Days
+                                        <span style="font-size:22px;"> <?php echo $last7daysregusers;?></span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="lastsevendays-reg-users.php">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+
+<?php
+$query3=mysqli_query($con,"select id from users where date(posting_date)>=now() - INTERVAL 30 day");
+$last30daysregusers=mysqli_num_rows($query3);
+?>
+
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Registered Users in Last 30 Days
+                                        <span style="font-size:22px;"> <?php echo $last30daysregusers;?></span></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="lastthirtyays-reg-users.php">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
+                   
+                      
                     </div>
-                    <div class="row report-inner-cards-wrapper">
-                      <div class=" col-md -6 col-xl report-inner-card">
-                        <div class="inner-card-text">
-                           <?php 
-                        $sql1 ="SELECT * from  tblclass";
-$query1 = $dbh -> prepare($sql1);
-$query1->execute();
-$results1=$query1->fetchAll(PDO::FETCH_OBJ);
-$totclass=$query1->rowCount();
-?>
-                          <span class="report-title">Total Class</span>
-                          <h4><?php echo htmlentities($totclass);?></h4>
-                          <a href="manage-class.php"><span class="report-count"> View Classes</span></a>
-                        </div>
-                        <div class="inner-card-icon bg-success">
-                          <i class="icon-rocket"></i>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-xl report-inner-card">
-                        <div class="inner-card-text">
-                          <?php 
-                        $sql2 ="SELECT * from  tblstudent";
-$query2 = $dbh -> prepare($sql2);
-$query2->execute();
-$results2=$query2->fetchAll(PDO::FETCH_OBJ);
-$totstu=$query2->rowCount();
-?>
-                          <span class="report-title">Total Students</span>
-                          <h4><?php echo htmlentities($totstu);?></h4>
-                          <a href="manage-students.php"><span class="report-count"> View Students</span></a>
-                        </div>
-                        <div class="inner-card-icon bg-danger">
-                          <i class="icon-user"></i>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-xl report-inner-card">
-                        <div class="inner-card-text">
-                          <?php 
-                        $sql3 ="SELECT * from  tblnotice";
-$query3 = $dbh -> prepare($sql3);
-$query3->execute();
-$results3=$query3->fetchAll(PDO::FETCH_OBJ);
-$totnotice=$query3->rowCount();
-?>
-                          <span class="report-title">Total Class Notice</span>
-                          <h4><?php echo htmlentities($totnotice);?></h4>
-                          <a href="manage-notice.php"><span class="report-count"> View Notices</span></a>
-                        </div>
-                        <div class="inner-card-icon bg-warning">
-                          <i class="icon-doc"></i>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-xl report-inner-card">
-                        <div class="inner-card-text">
-                          <?php 
-                        $sql4 ="SELECT * from  tblpublicnotice";
-$query4 = $dbh -> prepare($sql4);
-$query4->execute();
-$results4=$query4->fetchAll(PDO::FETCH_OBJ);
-$totpublicnotice=$query4->rowCount();
-?>
-                          <span class="report-title">Total Public Notice</span>
-                          <h4><?php echo htmlentities($totpublicnotice);?></h4>
-                          <a href="manage-public-notice.php"><span class="report-count"> View PublicNotices</span></a>
-                        </div>
-                        <div class="inner-card-icon bg-primary">
-                          <i class="icon-doc"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </main>
+             <?php include_once('../includes/footer.php'); ?>
             </div>
-           
-            
-          </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-         <?php include_once('includes/footer.php');?>
-          <!-- partial -->
         </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="vendors/chart.js/Chart.min.js"></script>
-    <script src="vendors/moment/moment.min.js"></script>
-    <script src="vendors/daterangepicker/daterangepicker.js"></script>
-    <script src="vendors/chartist/chartist.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/misc.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="js/dashboard.js"></script>
-    <!-- End custom js for this page -->
-  </body>
-</html><?php }  ?>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="../js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="../js/datatables-simple-demo.js"></script>
+    </body>
+</html>
+<?php } ?>

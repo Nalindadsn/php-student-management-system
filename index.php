@@ -1,128 +1,72 @@
-<?php
-session_start();
-error_reporting(0);
-include('includes/dbconnection.php');
-?>
-<!doctype html>
-<html>
-<head>
-<title>Student  Management System || Home Page</title>
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--bootstrap-->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-<!--coustom css-->
-<link href="css/style.css" rel="stylesheet" type="text/css"/>
-<!--script-->
-<script src="js/jquery-1.11.0.min.js"></script>
-<!-- js -->
-<script src="js/bootstrap.js"></script>
-<!-- /js -->
-<!--fonts-->
-<link href='//fonts.googleapis.com/css?family=Open+Sans:300,300italic,400italic,400,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<!--/fonts-->
-<!--hover-girds-->
-<link rel="stylesheet" type="text/css" href="css/default.css" />
-<link rel="stylesheet" type="text/css" href="css/component.css" />
-<script src="js/modernizr.custom.js"></script>
-<!--/hover-grids-->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
-<!--script-->
-<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
-				});
-			});
-</script>
-<!--/script-->
-</head>
-	<body>
-<?php include_once('includes/header.php');?>
-<div class="banner">
-  <div class="container">
-  <script src="js/responsiveslides.min.js"></script>
- <script>
-    $(function () {
-      $("#slider").responsiveSlides({
-        auto: true,
-        nav: true,
-        speed: 500,
-        namespace: "callbacks",
-        pager: true,
-      });
-    });
-  </script>
-<div class="slider">
-       <div class="callbacks_container">
-        <ul class="rslides" id="slider">
-         <li>     
-          <h3>Student Management System</h3>      
-           <p>Registered Students can Login Here</p>             
-          <div class="readmore">
-          <a href="user/login.php">Student Login<i class="glyphicon glyphicon-menu-right"> </i></a>
-          </div>
-         </li>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Home | Registration and Login System </title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.php">Registration and Login System</a>
+            <!-- Sidebar Toggle-->
 
- 
-        </ul>
-      </div>
-    </div>
-</div>      
-  </div>
-<div class="welcome">
-	<div class="container">
-		<?php
-$sql="SELECT * from tblpage where PageType='aboutus'";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
+            <!-- Navbar Search-->
+          
+        </nav>
+        <div id="layoutSidenav">
+       
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">   User Registration & Login and User Management System With admin panel</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              
+                        </ol>
+        <div class="row" >
+                            <div class="col-xl-4 col-md-6" >
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Not Registers Yet</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="signup.php">Signup Here</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+<div class="col-xl-4 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Already Registered</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="login.php">Login Here</a>
+                                    </div>
+                                </div>
+                            </div>
 
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-		<h2><?php  echo htmlentities($row->PageTitle);?></h2>
-		<p><?php  echo ($row->PageDescription);?></p><?php $cnt=$cnt+1;}} ?>
-	</div>
-</div>
-<!--/welcome-->
+<div class="col-xl-4 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Admin Panel</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="admin">Login Here</a>
+                          
+                                    </div>
+                                </div>
+                            </div>
 
-
-<!--testmonials-->
-<div class="testimonials">
-	<div class="container">
-			<div class="testimonial-nfo">
-        <h3>Public Notices</h3>
-         <marquee  style="height:350px;" direction ="up" onmouseover="this.stop();" onmouseout="this.start();">
-				<?php
-$sql="SELECT * from tblpublicnotice";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $row)
-{               ?>
-
- 
-		<a href="view-public-notice.php?viewid=<?php echo htmlentities ($row->ID);?>" target="_blank" style="color:#fff;">
-          <?php  echo htmlentities($row->NoticeTitle);?>(<?php  echo htmlentities($row->CreationDate);?>)</a>
-          <hr /><br />
-				    
-			<?php $cnt=$cnt+1;}} ?>
-	</marquee></div>
-	</div>
-</div>
-<!--\testmonials-->
-<!--specfication-->
-
-<!--/specfication-->
-<?php include_once('includes/footer.php');?>
-<!--/copy-rights-->
-	</body>
+                            </div>
+                        <div style="height: 100vh"></div>
+            
+                    </div>
+                </main>
+   <?php include_once('includes/footer.php');?>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+    </body>
 </html>
