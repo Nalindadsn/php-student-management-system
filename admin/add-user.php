@@ -16,13 +16,14 @@ if(isset($_POST['submit']))
     $password=$_POST['password'];
     $contact=$_POST['contact'];
     $indexNo=$_POST['indexNo'];
+    $intake=$_POST['intake'];
 $sql=mysqli_query($con,"select id from users where email='$email'");
 $row=mysqli_num_rows($sql);
 if($row>0)
 {
     echo "<script>alert('Email id already exist with another account. Please try with other email id');</script>";
 } else{
-    $msg=mysqli_query($con,"insert into users(fname,lname,email,password,contactno,fullName,nameWithInitials,indexNo) values('$fname','$lname','$email','$password','$contact','$fullName','$nameWithInitials','$indexNo')");
+    $msg=mysqli_query($con,"insert into users(fname,lname,email,password,contactno,fullName,nameWithInitials,indexNo,intake) values('$fname','$lname','$email','$password','$contact','$fullName','$nameWithInitials','$indexNo','$intake')");
 
 if($msg)
 {
@@ -78,14 +79,20 @@ return true;
                                     
                                     <div class="card-body">
 <form method="post" name="signup" onsubmit="return checkpass();">
-
+<div class="row mb-3">
 <div class="col-md-6">
 <div class="form-floating mb-3 mb-md-0">
 <input class="form-control" id="indexNo" name="indexNo" type="text" placeholder="Enter your first name" required />
 <label for="inputFirstName">Index No</label>
 </div>
 </div>
-
+<div class="col-md-6">
+<div class="form-floating mb-3 mb-md-0">
+<input class="form-control" id="intake" name="intake" type="text" placeholder="Enter your first name" required />
+<label for="inputFirstName">Intake</label>
+</div>
+</div>
+</div>
 <div class="row mb-3">
 <div class="col-md-6">
 <div class="form-floating mb-3 mb-md-0">
