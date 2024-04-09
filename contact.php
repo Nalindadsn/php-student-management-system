@@ -445,7 +445,7 @@ textarea.input {
 
         <div class="contact-form">
 
-          <form action="index.html" autocomplete="off" style="width: 100%">
+          <form action="index.php" autocomplete="off" style="width: 100%">
             <h3 class="title">Contact us</h3>
             <div class="input-container">
               <input type="text" name="name" class="input" />

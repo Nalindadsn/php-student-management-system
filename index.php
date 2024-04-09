@@ -1,3 +1,10 @@
+<?php session_start();
+include_once('includes/config.php');
+// if (strlen($_SESSION['id']==0)) {
+  
+//   } else{
+   
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/css/styles.css">
- <link rel="stylesheet" type="text/css" href="css/main.css">
+ <link rel="stylesheet" type="text/css" href="css/main.css"></head>
 <body>
  <header>
     <h2><a href="#">GREEN UNIVERSITY
@@ -14,7 +21,22 @@
        <li><a href="index.php" class="active">Home</a></li>
       <li><a href="about.php">About</a></li>
       <li><a href="contact.php">Contact</a></li>
+      <?php
+if (isset($_SESSION['name'])) {
+?>
+      <li><a href="logout.php"  class="sign-button">Sign Out</a></li>
+
+
+<?php
+}else{
+  ?>
       <li><a href="login.php"  class="sign-button">Signin</a></li>
+
+
+  <?php
+}
+
+       ?>
     </nav>
   </header>
 
@@ -135,4 +157,7 @@ Our latest podcast on evidence-based L&D explores the power of reflection for ef
 
 
 
-</head>
+<?php 
+// }
+
+ ?>
