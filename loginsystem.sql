@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2024 at 05:59 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Apr 09, 2024 at 09:39 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,6 +48,10 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `fullName` varchar(400) DEFAULT NULL,
+  `nameWithInitials` varchar(200) DEFAULT NULL,
+  `indexNo` varchar(200) DEFAULT NULL,
+  `intake` varchar(50) DEFAULT NULL,
   `fname` varchar(255) DEFAULT NULL,
   `lname` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -60,9 +64,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `contactno`, `posting_date`) VALUES
-(1, 'Rahul', 'Kumar', 'rahulj23@gmail.com', 'Test@123', '1234563210', '2024-02-18 06:15:52'),
-(2, 'John', 'Doe', 'johndoe12@gamil.com', 'Test@12345', '4563210236', '2024-02-19 06:35:03');
+INSERT INTO `users` (`id`, `fullName`, `nameWithInitials`, `indexNo`, `intake`, `fname`, `lname`, `email`, `password`, `contactno`, `posting_date`) VALUES
+(1, 'Suprabha jhjkhjj jhsd jkfhsjkdh kjhd jksf hskdjf h djshfkjdsfh ', 'S p', '', '2014', 'Rahul', 'Kumar', 'rahulj23@gmail.com', 'Test@123', '1234563210', '2024-02-18 06:15:52'),
+(2, NULL, NULL, '', NULL, 'John', 'Doe', 'johndoe12@gamil.com', 'Test@12345', '4563210236', '2024-02-19 06:35:03'),
+(3, NULL, NULL, '', NULL, 'fi', 'la', 'test@gmail.com', '941151663@Bandara', '0704238939', '2024-04-08 08:11:58'),
+(4, NULL, NULL, '', NULL, 'fa', 'la', 'nalindadsn@gmail.com', '941151663@Bandara', '0704238939', '2024-04-08 08:34:31'),
+(5, NULL, NULL, '', NULL, 'fa', 'la', 'suprabha@gmail.com', 'Dsn@8798761', '0704238939', '2024-04-08 08:41:16'),
+(6, '1Suprabha jhjkhjj jhsd jkfhsjkdh kjhd jksf hskdjf h djshfkjdsfh ', '1S p', '1666', '12014', '1fa', '1la', 'nalindadsn123@gmail.com', '941151663Bandara', '0704238939', '2024-04-09 07:33:02');
 
 --
 -- Indexes for dumped tables
@@ -94,7 +102,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
