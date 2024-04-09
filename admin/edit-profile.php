@@ -48,7 +48,14 @@ if($msg)
                         
 <?php 
 $userid=$_GET['uid'];
-$query=mysqli_query($con,"select * from users where id='$userid'");
+// $query=mysqli_query($con,"select * from users where id='$userid'");
+$query=mysqli_query($con,"select *,intake.intake as intakeCol,intake.id as intakeId  from users  left join intake  on users.intake=intake.id where users.id='$userid'");
+
+
+
+// -- $sql = "SELECT * FROM users LEFT JOIN intake ON users.intake=intake.id WHERE users.id=$id";
+
+
 while($result=mysqli_fetch_array($query))
 {?>
                         <h1 class="mt-4"><?php echo $result['fname'];?>'s Profile</h1>
@@ -66,7 +73,42 @@ while($result=mysqli_fetch_array($query))
                                    </tr>
                                    <tr>
                                     <th>Intake</th>
-                                       <td><input class="form-control" id="intake" name="intake" type="text" value="<?php echo $result['intake'];?>" required /></td>
+                                       <td>
+
+
+                                  <!--       <input class="form-control" id="intake" name="intake" type="text" value="<?php echo $result['intake'];?>" required />
+
+ -->
+
+<select  class="form-control" id="intake" name="intake" type="text" value="<?php echo $result['intakeCol'];?>"  >
+ <?php $ret=mysqli_query($con,"select * from intake ");
+                              while($row=mysqli_fetch_array($ret))
+                                if ($row['id']===$result['intakeId']) {
+                                  ?>
+                                  <option value="<?php echo $row['id']?>"><?php echo $row['intake'];?></option>
+                                  <?php
+                                }
+                              ?>
+ <?php $ret=mysqli_query($con,"select * from intake");
+                              while($row=mysqli_fetch_array($ret))
+                                if ($row['id']!==$result['intakeId']) {
+                                  ?>
+                                  <option value="<?php echo $row['id']?>"><?php echo $row['intake'];?></option>
+                                  <?php
+                                }
+                              ?>
+
+</select>
+
+
+
+
+
+
+
+
+
+                                      </td>
                                    </tr>
                                    <tr>
                                     <th>First Name</th>

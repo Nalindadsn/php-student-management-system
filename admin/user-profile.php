@@ -28,7 +28,7 @@ if (strlen($_SESSION['adminid']==0)) {
                         
 <?php 
 $userid=$_GET['uid'];
-$query=mysqli_query($con,"select * from users where id='$userid'");
+$query=mysqli_query($con,"select *,intake.intake as year,users.id as id  from users  left join intake  on users.intake=intake.id where users.id='$userid'");
 while($result=mysqli_fetch_array($query))
 {?>
                         <h1 class="mt-4"><?php echo $result['fname'];?>'s Profile</h1>

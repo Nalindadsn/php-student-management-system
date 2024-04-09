@@ -88,7 +88,21 @@ return true;
 </div>
 <div class="col-md-6">
 <div class="form-floating mb-3 mb-md-0">
-<input class="form-control" id="intake" name="intake" type="text" placeholder="Enter your first name" required />
+
+<select  class="form-control" id="intake" name="intake" type="text" >
+ <?php $ret=mysqli_query($con,"select * from intake");
+                              while($row=mysqli_fetch_array($ret))
+                              {?>
+                                  <option value="<?php echo $row['id']?>"><?php echo $row['intake'];?></option>
+                                  
+                              <?php }?>
+</select>
+
+<!-- <select>
+
+                                      
+</select> -->
+
 <label for="inputFirstName">Intake</label>
 </div>
 </div>
