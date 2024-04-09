@@ -38,6 +38,22 @@ while($result=mysqli_fetch_array($query))
                                 <a href="edit-profile.php">Edit</a>
                                 <table class="table table-bordered">
                                    <tr>
+                                    <th>Full Name</th>
+                                       <td><?php echo $result['fullName'];?></td>
+                                   </tr>
+                                   <tr>
+                                    <th>Name with Initials</th>
+                                       <td><?php echo $result['nameWithInitials'];?></td>
+                                   </tr>
+                                   <tr>
+                                    <th>Index No</th>
+                                       <td><?php echo $result['indexNo'];?></td>
+                                   </tr>
+                                   <tr>
+                                    <th>Intake</th>
+                                       <td><?php echo $result['intake'];?></td>
+                                   </tr>
+                                   <tr>
                                     <th>First Name</th>
                                        <td><?php echo $result['fname'];?></td>
                                    </tr>

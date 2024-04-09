@@ -6,11 +6,15 @@ if (strlen($_SESSION['id']==0)) {
 //Code for Updation 
 if(isset($_POST['update']))
 {
+    $fullName=$_POST['fullName'];
+    $nameWithInitials=$_POST['nameWithInitials'];
+    $indexNo=$_POST['indexNo'];
+    $intake=$_POST['intake'];
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
     $contact=$_POST['contact'];
 $userid=$_SESSION['id'];
-    $msg=mysqli_query($con,"update users set fname='$fname',lname='$lname',contactno='$contact' where id='$userid'");
+    $msg=mysqli_query($con,"update users set fname='$fname',lname='$lname',contactno='$contact',fullName='$fullName',nameWithInitials='$nameWithInitials',indexNo='$indexNo',intake='$intake' where id='$userid'");
 
 if($msg)
 {
@@ -53,6 +57,25 @@ while($result=mysqli_fetch_array($query))
                      <form method="post">
                             <div class="card-body">
                                 <table class="table table-bordered">
+                                   <tr>
+                                    <th>Full Name</th>
+                                       <td><input class="form-control" id="fullName" name="fullName" type="text" value="<?php echo $result['fullName'];?>" required /></td>
+                                   </tr>
+                                   <tr>
+                                    <th>Name With Initials</th>
+                                       <td><input class="form-control" id="nameWithInitials" name="nameWithInitials" type="text" value="<?php echo $result['nameWithInitials'];?>" required /></td>
+                                   </tr>
+                                   <tr>
+                                    <th>Index No</th>
+                                       <td><input class="form-control" id="indexNo" name="indexNo" type="text" value="<?php echo $result['indexNo'];?>" required /></td>
+                                   </tr>
+                                   
+                                   <tr>
+                                    <th>Intake</th>
+                                       <td><input class="form-control" id="intake" name="intake" type="text" value="<?php echo $result['intake'];?>" required /></td>
+                                   </tr>
+                                   
+
                                    <tr>
                                     <th>First Name</th>
                                        <td><input class="form-control" id="fname" name="fname" type="text" value="<?php echo $result['fname'];?>" required /></td>
