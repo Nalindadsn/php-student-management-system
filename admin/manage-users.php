@@ -54,6 +54,7 @@ echo "<script>alert('Data deleted');</script>";
                                              <th>Sno.</th>
                                   <th>First Name</th>
                                   <th> Last Name</th>
+                                  <th> Intake</th>
                                   <th> Email Id</th>
                                   <th>Contact no.</th>
                                   <th>Reg. Date</th>
@@ -65,6 +66,7 @@ echo "<script>alert('Data deleted');</script>";
                                              <th>Sno.</th>
                                   <th>First Name</th>
                                   <th> Last Name</th>
+                                  <th> Intake</th>
                                   <th> Email Id</th>
                                   <th>Contact no.</th>
                                   <th>Reg. Date</th>
@@ -72,7 +74,7 @@ echo "<script>alert('Data deleted');</script>";
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                              <?php $ret=mysqli_query($con,"select * from users");
+                                              <?php $ret=mysqli_query($con,"select *,intake.intake as year,users.id as id  from users  left join intake  on users.intake=intake.id");
                               $cnt=1;
                               while($row=mysqli_fetch_array($ret))
                               {?>
@@ -80,6 +82,7 @@ echo "<script>alert('Data deleted');</script>";
                               <td><?php echo $cnt;?></td>
                                   <td><?php echo $row['fname'];?></td>
                                   <td><?php echo $row['lname'];?></td>
+                                  <td><?php echo $row['year'];?></td>
                                   <td><?php echo $row['email'];?></td>
                                   <td><?php echo $row['contactno'];?></td>  <td><?php echo $row['posting_date'];?></td>
                                   <td>

@@ -9,15 +9,16 @@ if (strlen($_SESSION['adminid']==0)) {
 if(isset($_POST['submit']))
 {
 
+    $notice=$_POST['notice'];
     $intake=$_POST['intake'];
 
 
-    $msg=mysqli_query($con,"insert into intake(intake) values('$intake')");
+    $msg=mysqli_query($con,"insert into notice(notice,intake) values('$notice','$intake')");
 
 if($msg)
 {
-    echo "<script>alert('Intake Created');</script>";
-    echo "<script type='text/javascript'> document.location = 'intake.php'; </script>";
+    echo "<script>alert('notice Created');</script>";
+    echo "<script type='text/javascript'> document.location = 'notice.php'; </script>";
 }
 
 }
@@ -26,8 +27,8 @@ if($msg)
 
 if(isset($_GET['id']))
 {
-$intakeid=$_GET['id'];
-$msg=mysqli_query($con,"delete from intake where id='$intakeid'");
+$noticeid=$_GET['id'];
+$msg=mysqli_query($con,"delete from notice where id='$noticeid'");
 if($msg)
 {
 echo "<script>alert('Data deleted');</script>";
@@ -70,7 +71,7 @@ return true;
                     <div class="container-fluid px-4">
                         
 
-                        <h1 class="mt-4">Create Account</h1>
+                        <h1 class="mt-4">Create Notice</h1>
                         <div class="card mb-4">
                      <main>
                     <div>
@@ -81,20 +82,48 @@ return true;
                                     <div class="card-body">
 <form method="post" name="signup" onsubmit="return checkpass();">
 <div class="row mb-3">
-<div class="col-md-12">
+<div class="col-md-6">
 <div class="form-floating mb-3 mb-md-0">
-<input class="form-control" id="intake" name="intake" type="text" placeholder="Intake Year" required />
-<label for="intake">Intake</label>
+<!-- <input class="form-control" type="text" placeholder="notice Year" required />
+ -->
+<textarea class="form-control"  id="notice" name="notice">
+  
+</textarea>
+<label for="notice">notice</label>
 </div>
 </div>
 
+
+
+
+<div class="col-md-6">
+<div class="form-floating mb-3 mb-md-0">
+
+
+<select  class="form-control" id="intake" name="intake" type="text" value="<?php echo $result['intakeCol'];?>"  >
+ <?php $ret=mysqli_query($con,"select  * from intake   ");
+                              while($row=mysqli_fetch_array($ret))
+                                {
+                                  ?>
+                                  <option value="<?php echo $row['id']?>"><?php echo $row['intake'];?></option>
+                                  <?php
+                                }
+                              ?>
+
+</select>
+
+
+
+<label for="intake">intake</label>
+</div>
+</div>
 </div>
 
 
                                     
 
 <div class="mt-4 mb-0">
-<div class="d-grid"><button type="submit" class="btn btn-primary btn-block" name="submit">Create Account</button></div>
+<div class="d-grid"><button type="submit" class="btn btn-primary btn-block" name="submit">Create Notice</button></div>
 </div>
                                         </form>
 
@@ -104,23 +133,24 @@ return true;
 
 
 
-<table id="datatablesSimple">
+<table id="datatablesSimple" style="width: 100%">
                                     <thead>
                                         <tr>
-                                  <th>Intake</th>
+                                  <th>notice</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                              <?php $ret=mysqli_query($con,"select * from intake");
+                                              <?php $ret=mysqli_query($con,"select  * ,intake.intake as intakeCol,notice.id as id  from notice  left join intake  on notice.intake=intake.id   ");
                               $cnt=1;
                               while($row=mysqli_fetch_array($ret))
                               {?>
                               <tr>
                               <td><?php echo $cnt;?></td>
-                                  <td><?php echo $row['intake'];?></td>
+                                  <td><p><?php echo $row['notice'];?></p></td>
+                                  <td><p><?php echo $row['intakeCol'];?></p></td>
                                   <td>
                                      
-                                     <a href="intake.php?id=<?php echo $row['id'];?>" onClick="return confirm('Do you really want to delete');"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                     <a href="notice.php?id=<?php echo $row['id'];?>" onClick="return confirm('Do you really want to delete');"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                   </td>
                               </tr>
                               <?php $cnt=$cnt+1; }?>

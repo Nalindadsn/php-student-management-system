@@ -94,7 +94,7 @@ return true;
                                     
 
 <div class="mt-4 mb-0">
-<div class="d-grid"><button type="submit" class="btn btn-primary btn-block" name="submit">Create Account</button></div>
+<div class="d-grid"><button type="submit" class="btn btn-primary btn-block" name="submit">Create Intake</button></div>
 </div>
                                         </form>
 

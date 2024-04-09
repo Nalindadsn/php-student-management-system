@@ -46,6 +46,38 @@ while($result=mysqli_fetch_array($query))
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="col-xl-5 col-md-6" >
+
+
+
+<table id="datatablesSimple" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                  <th>notice</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                              <?php $ret=mysqli_query($con,"select  * ,intake.intake as intakeCol,notice.id as id  from notice  left join intake  on notice.intake=intake.id  where  notice.intake='".$result['intake']."' ");
+                              $cnt=1;
+                              while($row2=mysqli_fetch_array($ret))
+                              {?>
+                              <tr>
+                              <td><?php echo $cnt;?></td>
+                                  <td><p><?php echo $row2['notice'];?></p></td>
+                                  <td><p><?php echo $row2['intakeCol'];?></p></td>
+                                 
+                              </tr>
+                              <?php $cnt=$cnt+1; }?>
+                                      
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+
+
                             </div>
 <?php } ?>
 
