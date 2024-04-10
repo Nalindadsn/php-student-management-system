@@ -1,25 +1,24 @@
 <?php session_start();
 include_once('includes/config.php');
-if (strlen($_SESSION['id']==0)) {
+if (strlen($_SESSION['adminid']==0)) {
   header('location:logout.php');
   } else{
 //Code for Updation 
 if(isset($_POST['update']))
 {
+    $intake=$_POST['intake'];
     $fullName=$_POST['fullName'];
     $nameWithInitials=$_POST['nameWithInitials'];
-    $indexNo=$_POST['indexNo'];
-    $intake=$_POST['intake'];
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
     $contact=$_POST['contact'];
-$userid=$_SESSION['id'];
-    $msg=mysqli_query($con,"update users set fname='$fname',lname='$lname',contactno='$contact',fullName='$fullName',nameWithInitials='$nameWithInitials',indexNo='$indexNo',intake='$intake' where id='$userid'");
+$userid=$_GET['uid'];
+    $msg=mysqli_query($con,"update users set fname='$fname',lname='$lname',contactno='$contact',fullName='$fullName',nameWithInitials='$nameWithInitials',intake='$intake' where id='$userid'");
 
 if($msg)
 {
     echo "<script>alert('Profile updated successfully');</script>";
-       echo "<script type='text/javascript'> document.location = 'profile.php'; </script>";
+       echo "<script type='text/javascript'> document.location = 'manage-users.php'; </script>";
 }
 }
 
@@ -35,21 +34,27 @@ if($msg)
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Edit Profile | Registration and Login System</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+              <link rel="stylesheet" type="text/css" href="css/style.css">
+
     </head>
     <body class="sb-nav-fixed">
-      <?php include_once('includes/navbar.php');?>
+      
         <div id="layoutSidenav">
-          <?php include_once('includes/sidebar.php');?>
+          <?php include_once('includes/navbar.php');?>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
                         
 <?php 
-$userid=$_SESSION['id'];
-$query=mysqli_query($con,"select * from users where id='$userid'");
+$userid=$_GET['uid'];
+// $query=mysqli_query($con,"select * from users where id='$userid'");
+$query=mysqli_query($con,"select *,intake.intake as intakeCol,intake.id as intakeId  from users  left join intake  on users.intake=intake.id where users.id='$userid'");
+
+
+
+// -- $sql = "SELECT * FROM users LEFT JOIN intake ON users.intake=intake.id WHERE users.id=$id";
+
+
 while($result=mysqli_fetch_array($query))
 {?>
                         <h1 class="mt-4"><?php echo $result['fname'];?>'s Profile</h1>
@@ -62,20 +67,48 @@ while($result=mysqli_fetch_array($query))
                                        <td><input class="form-control" id="fullName" name="fullName" type="text" value="<?php echo $result['fullName'];?>" required /></td>
                                    </tr>
                                    <tr>
-                                    <th>Name With Initials</th>
+                                    <th>Name with Initials</th>
                                        <td><input class="form-control" id="nameWithInitials" name="nameWithInitials" type="text" value="<?php echo $result['nameWithInitials'];?>" required /></td>
                                    </tr>
                                    <tr>
-                                    <th>Index No</th>
-                                       <td><input class="form-control" id="indexNo" name="indexNo" type="text" value="<?php echo $result['indexNo'];?>" required /></td>
-                                   </tr>
-                                   
-                                   <tr>
                                     <th>Intake</th>
-                                       <td><input class="form-control" id="intake" name="intake" type="text" value="<?php echo $result['intake'];?>" required /></td>
-                                   </tr>
-                                   
+                                       <td>
 
+
+                                  <!--       <input class="form-control" id="intake" name="intake" type="text" value="<?php echo $result['intake'];?>" required />
+
+ -->
+
+<select  class="form-control" id="intake" name="intake" type="text" value="<?php echo $result['intakeCol'];?>"  >
+ <?php $ret=mysqli_query($con,"select * from intake ");
+                              while($row=mysqli_fetch_array($ret))
+                                if ($row['id']===$result['intakeId']) {
+                                  ?>
+                                  <option value="<?php echo $row['id']?>"><?php echo $row['intake'];?></option>
+                                  <?php
+                                }
+                              ?>
+ <?php $ret=mysqli_query($con,"select * from intake");
+                              while($row=mysqli_fetch_array($ret))
+                                if ($row['id']!==$result['intakeId']) {
+                                  ?>
+                                  <option value="<?php echo $row['id']?>"><?php echo $row['intake'];?></option>
+                                  <?php
+                                }
+                              ?>
+
+</select>
+
+
+
+
+
+
+
+
+
+                                      </td>
+                                   </tr>
                                    <tr>
                                     <th>First Name</th>
                                        <td><input class="form-control" id="fname" name="fname" type="text" value="<?php echo $result['fname'];?>" required /></td>
@@ -111,16 +144,9 @@ while($result=mysqli_fetch_array($query))
 
                     </div>
                 </main>
-          <?php include('includes/footer.php');?>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+      
     </body>
 </html>
 <?php } ?>

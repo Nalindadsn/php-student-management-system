@@ -1,164 +1,88 @@
-<?php session_start();
+<?php session_start(); 
 include_once('includes/config.php');
-// if (strlen($_SESSION['id']==0)) {
-  
-//   } else{
-   
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="assets/css/styles.css">
- <link rel="stylesheet" type="text/css" href="css/main.css"></head>
-<body>
- <header>
-    <h2><a href="#">GREEN UNIVERSITY
-</a></h2>
-    <nav>
-       <li><a href="index.php" class="active">Home</a></li>
-      <li><a href="about.php">About</a></li>
-      <li><a href="contact.php">Contact</a></li>
-      <?php
-if (isset($_SESSION['name'])) {
-?>
-      <li><a href="logout.php"  class="sign-button">SignOut</a></li>
-      <li><a href="welcome.php"  class="user-button" ><?php echo $_SESSION['name'] ?></a></li>
 
 
-<?php
-}else{
-  ?>
-      <li><a href="login.php"  class="sign-button">Signin</a></li>
 
-
-  <?php
+// Code for login 
+if(isset($_POST['login']))
+{
+  $adminusername=$_POST['username'];
+  $pass=md5($_POST['password']);
+$ret=mysqli_query($con,"SELECT * FROM admin WHERE username='$adminusername' and password='$pass'");
+$num=mysqli_fetch_array($ret);
+if($num>0)
+{
+$extra="dashboard.php";
+$_SESSION['login']=$_POST['username'];
+$_SESSION['adminid']=$num['id'];
+echo "<script>window.location.href='".$extra."'</script>";
+exit();
 }
+else
+{
+echo "<script>alert('Invalid username or password');</script>";
+$extra="index.php";
+echo "<script>window.location.href='".$extra."'</script>";
+exit();
+}
+}
+?>
 
-       ?>
-    </nav>
-  </header>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Admin Login | Registration and Login System</title>
+               <link rel="stylesheet" type="text/css" href="css/style.css">
 
-  <section class="hero">
-    <div class="background-image"></div>
-    <div class="hero-content-area">
-      <h1>GREEN UNIVERSITY</h1>
-      <h3>Unmissable Adventure Tours With Your Friends</h3>
-      <a href="#" class="btn">Contact Us Now</a>
-    </div>
-  </section>
+    </head>
+    <body style="background: url('../img/bg1.jpg'); background-size: cover" >
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5" style="background-color: rgba(225,225,225,.5);">
 
-  <section class="destinations">
-    <h3 class="title">WHO WE ARE?</h3>
-    <p>Welcome to the Green University, under the partnership with the  Professionals and Certification Institute. Green University is a registered professional in the Sri Lanka.</p>
-  <div>
-      <div class="row">
-          
-          
-<ul class="list-group">
-  <li class="list-group-item">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
-</ul>
+<div class="card-header">
+    <h3 class="text-center font-weight-light my-4">Admin Login</h3></div>
+                                    <div class="card-body">
+                                        
+                                        <form method="post">
+                                            
+<div class="form-floating mb-3">
+<input class="form-control" name="username" type="text" placeholder="Username"  required/>
+<label for="inputEmail">Username</label>
+</div>
+                                            
 
-      </div>
-
-  </div>    <hr>
-
-    <ul class="grid">
-      <li class="small image-1"></li>
-      <li class="large image-2"></li>
-      <li class="large image-3"></li>
-      <li class="small image-4"></li>
-    </ul>
-  </section>
+<div class="form-floating mb-3">
+<input class="form-control" name="password" type="password" placeholder="Password" required />
+<label for="inputPassword">Password</label>
+</div>
 
 
-
-
-  <section class="packages">
-    <h3 class="title">OUR SERVICES
-</h3>
-   
-
-    <ul class="grid">
-      <li>
-        <i class="fa fa-book fa-4x"></i>
-        <h4>
-Multidisciplinary study
-facilities</h4>
-        <p>
-We provide the best and modern facilities
-for studies.</p>
-      </li>
-      <li>
-        <i class="fa fa-camera-retro fa-4x"></i>
-        <h4>
-International programs</h4>
-        <p>
-We provide International recognized
-Programs.</p>
-      </li>
-      <li>
-        <i class="fa fa-bicycle fa-4x"></i>
-        <h4>
-Highly qualified
-lecturing staff</h4>
-        <p>
-We have the most talented Lecturers
-more than 25</p>
-      </li>
-      <li>
-        <i class="fa fa-flag-checkered fa-4x"></i>
-        <h4>
-Using Reflection to
-Support to learning</h4>
-        <p>
-Our latest podcast on evidence-based L&D explores the power of reflection for effective workplace learning.</p>
-      </li>
-    </ul>
-  </section>
-
-  <section class="testimonials">
-    <h3 class="title">Testimonials from our Students:</h3>
-    <hr>
-    <p class="quote">Wow! This tour made me realize how much I love being outside with my friends. After going on one of these tours, I can safely say that beer pong is my favorite game all time, also the cultural programs were really interesting!</p>
-    <p class="author">- Albert Herter</p>
-    <p class="quote">Wow, this really blew my mind. We had so much fun at the beach, and also some hidden secrets revealed. Come on, I'm living in this city for 5 years. Amazing!</p>
-    <p class="author">- Sharon Rosenberg</p>
-    <p class="quote">If you want to understand your friends better, head to the mountains. I mean, seriously. It's like sitting next to a campfire and just talk in the sunset, woah. You know? It's like that.</p>
-    <p class="author">- Luis Mendoza</p>
-  </section>
-
-  <section class="contact">
-    <h3 class="title">Learn more</h3>
-    <p>Welcome to the Green University, under the partnership with the Professionals and Certification Institute. Green University is a registered professional in the Sri Lanka.</p>
-    <hr>
-    <form>
-      <input type="email" placeholder="Email">
-      <a href="#" class="btn">Subscribe now</a>
-    </form>
-  </section>
-
-  <footer>
-    <p>Images courtesy of <a href="">GREEN UNIVERSITY</a>.</p>
-    <p>Why are you even reading this?! There's never anything interesting in the footer!</p>
-    <ul>
-      <li><a href="#"><i class="fa fa-twitter-square fa-2x"></i></a></li>
-      <li><a href="#"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-      <li><a href="#"><i class="fa fa-snapchat-square fa-2x"></i></a></li>
-    </ul>
-  </footer>
-</body>
+<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+<button class="btn btn-primary" name="login" type="submit">Login</button>
+</div>
+</form>
+</div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="../index.php">Back to Home Page</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+       
+    </body>
 </html>
-
-
-
-<?php 
-// }
-
- ?>
+<?php  ?>
