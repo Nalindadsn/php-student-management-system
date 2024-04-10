@@ -1,3 +1,10 @@
+<?php session_start();
+include_once('includes/config.php');
+// if (strlen($_SESSION['id']==0)) {
+  
+//   } else{
+   
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +21,23 @@
       <li><a href="index.php">Home</a></li>
       <li><a href="about.php"  class="active">About</a></li>
       <li><a href="contact.php">Contact</a></li>
+            <?php
+if (isset($_SESSION['name'])) {
+?>
+      <li><a href="logout.php"  class="sign-button">Sign Out</a></li>
+      <li><a href="welcome.php"  ><?php echo $_SESSION['name'] ?></a></li>
+
+
+<?php
+}else{
+  ?>
       <li><a href="login.php"  class="sign-button">Signin</a></li>
+
+
+  <?php
+}
+
+       ?>
     </nav>
   </header>
 
