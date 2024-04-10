@@ -20,45 +20,17 @@
 
 
   <section class="hero">
-    <div class="background-image"></div>
+    <div class="background-image" style="background: url('img/bg3.jpg'); background-size: cover;"></div>
     <div class="hero-content-area">
       <h1>HOME/ABOUT</h1>
       <h3>WHO WE ARE?</h3>
     </div>
   </section>
 
+
+
+
   <section class="destinations">
-    <h3 class="title">WHO WE ARE?</h3>
-    <p>Welcome to the Green University, under the partnership with the  Professionals and Certification Institute. Green University is a registered professional in the Sri Lanka.</p>
-  <div>
-      <div class="row">
-          
-          
-<ul class="list-group">
-  <li class="list-group-item">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
-</ul>
-
-      </div>
-
-  </div>    <hr>
-
-    <ul class="grid">
-      <li class="small image-1"></li>
-      <li class="large image-2"></li>
-      <li class="large image-3"></li>
-      <li class="small image-4"></li>
-    </ul>
-  </section>
-
-
-
-
-
-  <section class="contact">
     <h3 class="title">Learn more</h3>
     <p>Welcome to the Green University, under the partnership with the Professionals and Certification Institute. Green University is a registered professional in the Sri Lanka.</p>
     <hr>

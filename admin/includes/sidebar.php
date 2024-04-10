@@ -13,6 +13,10 @@
                                 <div class="sb-nav-link-icon"><i class="fa fa-calendar"></i></div>
                                 Intakes
                             </a>
+                            <a class="nav-link text-white" href="notice.php">
+                                <div class="sb-nav-link-icon"><i class="fa fa-calendar"></i></div>
+                                Notice
+                            </a>
                  
                             <a class="nav-link text-white" href="add-user.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
