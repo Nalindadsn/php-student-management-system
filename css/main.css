@@ -380,3 +380,9 @@ body > header > nav > li> .active{
     color: #fff;
     border-radius: 25px
 }
+.user-button{
+    padding: 5px ;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 25px
+}

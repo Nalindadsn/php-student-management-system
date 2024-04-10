@@ -384,8 +384,8 @@ textarea.input {
             <?php
 if (isset($_SESSION['name'])) {
 ?>
-      <li><a href="logout.php"  class="sign-button">Sign Out</a></li>
-      <li><a href="welcome.php"  ><?php echo $_SESSION['name'] ?></a></li>
+      <li><a href="logout.php"  class="sign-button">SignOut</a></li>
+      <li><a href="welcome.php"  class="user-button"  ><?php echo $_SESSION['name'] ?></a></li>
 
 
 <?php
