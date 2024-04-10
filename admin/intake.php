@@ -70,7 +70,7 @@ return true;
                     <div class="container-fluid px-4">
                         
 
-                        <h1 class="mt-4">Create Account</h1>
+                        <h1 class="mt-4">Create Intake</h1>
                         <div class="card mb-4">
                      <main>
                     <div>
@@ -104,7 +104,7 @@ return true;
 
 
 
-<table id="datatablesSimple">
+<table id="datatablesSimple border" style="width: 100%">
                                     <thead>
                                         <tr>
                                   <th>Intake</th>

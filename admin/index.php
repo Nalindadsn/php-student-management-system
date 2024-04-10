@@ -1,5 +1,10 @@
 <?php session_start(); 
 include_once('../includes/config.php');
+
+if (strlen($_SESSION['adminid']==0)) {
+  header('location:logout.php');
+  } else{
+
 // Code for login 
 if(isset($_POST['login']))
 {
@@ -84,3 +89,4 @@ exit();
         <script src="../js/scripts.js"></script>
     </body>
 </html>
+<?php } ?>
